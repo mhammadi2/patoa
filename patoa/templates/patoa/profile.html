@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Table for a Profile{% endblock title %}
+{% block content %}
+
+<div class="container">
+    
+    {% if patents %}
+    <p class="h2 text-center alert alert-success">List of scrabed patents for: {{ username }}</p>
+            <!-- <p> Here are thr Patent Application Listing</p> -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Index</th>
+                        <th scope="col">Patents Number</th>  
+                        <th scope="col">Remove</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pat in patents %}
+                        <tr>
+                            <td scope="row">
+                    
+                        <p align="justify">  <b> {{forloop.counter}} </b> </strong> </p>
+                      
+                            </td>
+                            
+                            <td><a href="/patclaim/{{pat.patnof}}/">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{pat.patnof}}</h3>
+                                </div>
+                                </a>
+                            </td>
+                            <td><a href="/remov/{{pat.patnof}}/">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{pat.patnof}}</h3>
+                                </div>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p></p>
+            <p class="h2 text-center alert alert-danger" role="alert">Deleted patent due to Remove Patent # from the database</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% url 'home' as path_to_home %}
+{% url 'login' as path_to_login %}
+{% url 'logout' as path_to_logout %}
+{% url 'patoa:scrape' as path_to_scrape %}
+{% url 'patoa:dashboard' as path_to_dash %}
+{% url 'signin' as path_to_signin %}
+
+
+<!-- From othr file -->
+<!-- {% url 'products:add-purchase-view' as path_to_adding_records %}
+{% url 'csvs:upload-view' as path_to_download %}
+{% url 'customers:main-customers-view' as path_to_customers %}
+{% url 'products:sales-view' as path_to_sales %} -->
+<!-- End of other file -->
+
+<header>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto float-right">
+                    <li class="nav-item btn btn-outline-light" style="width: 120px;">
+                        <a class="nav-link text-success " href={{path_to_home}} class="{% if request.path == path_to_home %} active {% endif %}">
+                            Home
+                        </a>
+                    </li>
+                  
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item btn btn-outline-light" style="width: 120px;">
+                        <a class="nav-link text-success" href={{path_to_dash}} class="{% if request.path == path_to_dash %}active{% endif %}">
+                            Dashboard
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item btn btn-outline-light" style="width: 120px;">
+                        <a class="nav-link text-success " href={{path_to_logout}} class=" {% if request.path == path_to_logout %}active{% endif %}">
+                            Logout
+                        </a>
+                    </li>
+                    {% else %}
+
+                    <li class="nav-item btn btn-outline-light" style="width: 120px;">
+                        <a class="nav-link text-success " href={{path_to_login}} class="{% if request.path == path_to_login %} active {% endif %}">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item btn btn-outline-light" style="width: 120px;">
+                        <a class="nav-link text-success" href={{path_to_signin}} class="{% if request.path == path_to_signin %}active{% endif %}">
+                            Sign Up
+                        </a>
+                    </li>
+                   
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="jumbotron jumbotron-fluid bg-success">
+        <div class="container">
+          <h1 class="display-4">Patent Office Action Automation</h1>
+          <p class="lead">Generate and download an office action in MSword Based on Google Patents Repository</p>
+        </div>
+      </div>
+
+</header>

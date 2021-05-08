@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Scraping Form{% endblock title %}
+{% block content %}
+<div class="container">
+
+    <div class="input">
+        <div class="row mt-1 col ">
+            <div class="formpanel">
+                <div class="panel panel-default">
+                    <div class="panel-heaading">
+                        <h3 class="panel-title"> Enter Patent or Publication No</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form method="POST" action="{%  url 'patoa:scrape-view'  %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <div><label for="Patent No or Pub No">Pat No or Pub No</label></div>
+                                <div><input class="form-control" name="site" type="text" id="site"></div>
+                            </div>
+                    </div>
+                    <div class="row form-check">
+                        <div class="col-md-6">
+                            <input class="form-control btn btn-primary form-check" name="112" id="112" type="radio"
+                                value="112">
+                            <label class="form-check btn-primary" for="112">112</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control btn btn-primary form-check" name="102103" id="102103" type="radio" value="102103">
+                            <label class="form-check btn-primary" for="102103">102103</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control btn btn-primary form-check" name="spec" id="spec" type="radio" value="spec">
+                            <label class="form-check btn-primary" for="spec">Specification</label>
+                        </div>
+        
+                    </div>
+                    <div class="row  blue form-check">
+                        <div class="col-md-6">
+                            <input class="form-control btn btn-primary form-check" name="obj" id="obj" type="radio" value="obj">
+                            <label class="form-check btn-primary" for="obj">Objection</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control btn btn-primary form-check" name="drw" id="drw" type="radio" value="drw">
+                            <label class="form-check btn-primary" for="drw">Drawing</label>
+                        </div>
+                    </div>
+                    <div class="row input-group col-md-5">
+                        <button class="btn btn-success" type="submit">Scrape </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if links %}
+    <div class="row mt-5">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1>{{AB112}}</h1>
+
+                {% for claim in links %}
+                <p align="justify"> <strong> Regarding Claim <b> {{forloop.counter}} </b>, </strong>
+                    {{claim.claim_list}} </p>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-2">
+                <a class="btn btn-warning" href="/delete">Delete</a>
+                <h5 style="box-sizing: border-box; font-size: medium;"> {{ claimcount }}</h5>
+            </div>
+            <div class="col-md-10">
+                {{claimaddress}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <!-- <a href="download" class=button >Download</a> -->
+
+        <div class="col-md-4">
+            <a href="/static/media/{{patnof}}.docx" class="btn btn-success px-4 py-2 btn-sm">Download MSword File</a>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-8 m-1 alert alert-primary">
+                <h5 style="box-sizing: border-box; font-size: medium;"> Patent Application No. : {{patnof}}</h5>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+        </div>
+    </div>
+    {% else %}
+    <div class="row mt-5">
+        <h4> No Claims extracted  to show</h4>
+    </div>
+    {% endif %}
+    <div class="row mt-5">
+        
+    </div>
+</div>
+
+{% endblock %}
