@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    background-image: url("img/US_Patent_Office.jpg"); 
+  }
+  
+  
+  /* main {
+    display: block;
+    background-image: url("img/US_Patent_Office.jpg");
+    /* padding-top: 3em;
+    padding-bottom: 3em;
+    min-height: 85%; 
+  }  */
+  
+  footer {
+    padding: 15px;
+  }
+  .formpanel
+  {
+    /* background-attachment: fixed; */
+    background-color: rgb(241, 178, 90);
+  }
+  .input {
+    background-image: url(img/US_Patent_Office.jpg);
+    
+    
+  }
+  
+  @media only screen and (min-width: 768px) {
+    /* main {
+      display: flex;
+    }
+   */
+    aside {
+      margin-left: 2%;
+    }
+  
+    .columns-desktop {
+      display: flex;
+    }
+  }
+  
+  
+ 
+  

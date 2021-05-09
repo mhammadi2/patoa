@@ -25,7 +25,7 @@ SECRET_KEY = '&b*5*nzqx-!9t@i)h(o-0p&pm%+)4jt#$$#$ethv=1ws%06cp3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.patoausa.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -122,12 +122,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-
+print ("BAse Dir:" , BASE_DIR)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print("Static root dir  : ",STATIC_ROOT)
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+# ]
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'patoa/static')
 ]
+
+print(STATICFILES_DIRS[0])
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 print(MEDIA_ROOT)
